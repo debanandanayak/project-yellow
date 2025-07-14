@@ -87,7 +87,7 @@ export function EmailPasswordLoginForm() {
           </div>
           <Button
             type="submit"
-            disabled={form.formState.isSubmitting}
+            disabled={form.formState.isSubmitting || !form.formState.isValid}
             className="w-full"
           >
             {form.formState.isSubmitting ? (

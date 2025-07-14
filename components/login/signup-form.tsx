@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input'
 import { loginSchema } from './auth.schema'
 import { toast } from 'sonner'
 import { authClient } from '@/lib/auth-client'
+import { cn } from '@/lib/utils'
 export function SignupForm() {
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
@@ -81,7 +82,7 @@ export function SignupForm() {
                     </div>
                     <Button
                         type="submit"
-                        disabled={form.formState.isSubmitting}
+                        disabled={form.formState.isSubmitting || !form.formState.isValid}
                         className="w-full"
                     >
                         {form.formState.isSubmitting ? (
