@@ -1,12 +1,10 @@
-import { LoginForm } from '@/modules/auth/login'
-import { fetchPublicConfig } from '@/modules/config/config.services'
+import { Login } from '@/components/login/login'
 
-export default async function LoginPage() {
-	const { config } = await fetchPublicConfig()
+export default function LoginPage() {
 	return (
 		<div className="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
 			<div className="w-full max-w-sm">
-				<LoginForm config={config} />
+				<Login />
 			</div>
 		</div>
 	)
