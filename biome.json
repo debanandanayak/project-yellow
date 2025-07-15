@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["app", "lib"]
+		"includes": ["app", "lib", "components", "hooks", "middleware.ts"]
 	},
 	"formatter": {
 		"enabled": true,
