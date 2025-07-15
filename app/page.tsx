@@ -1,4 +1,8 @@
+import { Button } from '@/components/ui/button'
+import { GotoApp } from '@/components/users/goto-app'
+import { SignoutButton } from '@/components/users/logout'
 import Image from 'next/image'
+import { Suspense } from 'react'
 
 export default function Home() {
 	return (
@@ -65,34 +69,8 @@ export default function Home() {
 					/>
 					Learn
 				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="/team/new"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/window.svg"
-						alt="Window icon"
-						width={16}
-						height={16}
-					/>
-					Examples
-				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="/team/new"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/globe.svg"
-						alt="Globe icon"
-						width={16}
-						height={16}
-					/>
-					Go to nextjs.org →
-				</a>
+				<SignoutButton />
+				<GotoApp />
 			</footer>
 		</div>
 	)
