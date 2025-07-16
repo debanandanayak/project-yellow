@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/sidebar'
 import { Button } from '@/components/ui/button'
 import { WorkspaceSwitcher } from './workspace-switcher'
+import { Organization } from '@prisma/client/edge'
 
 export type AppSidebarData = {
     user: {
@@ -19,17 +20,11 @@ export type AppSidebarData = {
         email: string
         avatar: string
     }
-    teams: {
-        name: string
-        logo: string
-        plan: string
-        url: string
-    }[]
+    teams: Organization[]
     navMain: {
         title: string
         url: string
         icon: string
-        isActive?: boolean
         // biome-ignore lint/suspicious/noExplicitAny: <its okay>
         items: any[] // You can further type this if needed
     }[]

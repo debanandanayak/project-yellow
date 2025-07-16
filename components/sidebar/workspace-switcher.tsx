@@ -17,21 +17,34 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { authClient } from '@/lib/auth-client'
+import { toast } from 'sonner'
+import { Organization } from '@prisma/client/edge'
 
+interface TeamSwitcherProps {
+    teams: Organization[]
+}
 export function WorkspaceSwitcher({
     teams,
-}: {
-    teams: {
-        name: string
-        logo: string
-        plan: string
-        url: string
-    }[]
-}) {
-    const [activeTeam, setActiveTeam] = React.useState(teams[0])
+}: TeamSwitcherProps) {
 
-    if (!activeTeam) {
-        return null
+    const { data: activeOrganization } = authClient.useActiveOrganization()
+
+    const handleChangeOrganization = async (organizationId: string) => {
+        try {
+            const { error } = await authClient.organization.setActive({
+                organizationId,
+            })
+
+            if (error) {
+                toast.error("Failed to switch organization")
+                return
+            }
+
+            toast.success("Organization switched successfully")
+        } catch (error) {
+            toast.error("Failed to switch organization")
+        }
     }
 
     return (
@@ -43,7 +56,7 @@ export function WorkspaceSwitcher({
                             <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-5 items-center justify-center rounded-md">
                                 {/* <activeTeam.logo className="size-3" /> */}
                             </div>
-                            <span className="truncate font-medium">{activeTeam.name}</span>
+                            <span className="truncate font-medium">{activeOrganization?.name}</span>
                             <ChevronDown className="opacity-50" />
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
@@ -57,10 +70,10 @@ export function WorkspaceSwitcher({
                             Teams
                         </DropdownMenuLabel>
                         {teams.map((team, index) => (
-                            <Link href={`/${team.url}`} key={team.url}>
+                            <Link href={`/d/${team.slug}`} key={team.slug}>
                                 <DropdownMenuItem
                                     key={team.name}
-                                    onClick={() => setActiveTeam(team)}
+                                    onClick={async () => await handleChangeOrganization(team.id)}
                                     className="gap-2"
                                 >
                                     <div className="flex items-center justify-center rounded-xs border">
@@ -71,7 +84,7 @@ export function WorkspaceSwitcher({
                                 </DropdownMenuItem>
                             </Link>
                         ))}
-                        <DropdownMenuSeparator />
+                        {/* <DropdownMenuSeparator />
                         <DropdownMenuItem className="gap-2">
                             <div className="bg-background flex size-6 items-center justify-center rounded-md border">
                                 <Plus className="size-4" />
@@ -82,10 +95,10 @@ export function WorkspaceSwitcher({
                             >
                                 Add team
                             </Link>
-                        </DropdownMenuItem>
+                        </DropdownMenuItem> */}
                     </DropdownMenuContent>
                 </DropdownMenu>
             </SidebarMenuItem>
-        </SidebarMenu>
+        </SidebarMenu >
     )
 }

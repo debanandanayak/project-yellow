@@ -27,7 +27,6 @@ export function NavMain({
         title: string
         url: string
         icon: string
-        isActive?: boolean
         items?: {
             title: string
             url: string
@@ -41,7 +40,7 @@ export function NavMain({
             <SidebarGroupLabel>Platform</SidebarGroupLabel>
             <SidebarMenu>
                 {items.map((item) => (
-                    <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
+                    <Collapsible key={item.title} asChild >
                         <SidebarMenuItem>
                             <SidebarMenuButton asChild tooltip={item.title}>
                                 <Link href={`/${slug}/${item.url}`}>

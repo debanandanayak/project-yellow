@@ -1,27 +1,15 @@
 import { redirect } from 'next/navigation'
 import { AppSidebar } from '@/components/sidebar/app-sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { getOrganizations } from '@/app/datasource/actions'
 
-type Team = {
-    name: string
-    logo: string
-    plan: string
-    url: string
-}
 
 export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    const teams: Team[] = [
-        {
-            name: 'Acme Inc',
-            logo: '',
-            plan: 'hobby',
-            url: 'my-team',
-        },
-    ]
+    const teams = await getOrganizations()
     if (teams.length === 0) {
         redirect('/team/new')
     }
@@ -37,7 +25,6 @@ export default async function RootLayout({
                 title: 'Playground',
                 url: 'play',
                 icon: '',
-                isActive: true,
                 items: [],
             },
             {
@@ -62,11 +49,6 @@ export default async function RootLayout({
     }
     return (
         <SidebarProvider>
-            <AppSidebar
-                data={data}
-                variant="sidebar"
-                className="group-data-[side=left]:border-r-0"
-            />
             <SidebarInset className="h-svh p-0 lg:p-1.5">
                 <div className="h-full flex flex-col  lg:rounded-sm lg:ring lg:ring-accent">
                     {children}
