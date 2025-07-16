@@ -2,6 +2,10 @@ import { Search } from 'lucide-react'
 import { AppHeader } from '@/components/app-header'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { auth } from '@/lib/auth'
+import { headers } from 'next/headers'
+import { safely } from '@corentinth/chisels'
+import { notFound } from 'next/navigation'
 
 type WorkspacePropType = {
     slug: string
@@ -13,6 +17,15 @@ export default async function Page({
     params: Promise<WorkspacePropType>
 }) {
     const { slug } = await params
+
+    const [result, error] = await safely(auth.api.getFullOrganization({
+        query: { organizationSlug: slug },
+        headers: await headers()
+    }))
+
+    if (error) {
+        return notFound()
+    }
     return (
         <div className="h-full flex flex-col">
             <div className="border-b flex-shrink-0">

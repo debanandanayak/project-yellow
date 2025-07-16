@@ -20,6 +20,7 @@ import {
 import { authClient } from '@/lib/auth-client'
 import { toast } from 'sonner'
 import { Organization } from '@prisma/client/edge'
+import { Skeleton } from '../ui/skeleton'
 
 interface TeamSwitcherProps {
     teams: Organization[]
@@ -29,7 +30,6 @@ export function WorkspaceSwitcher({
 }: TeamSwitcherProps) {
 
     const { data: activeOrganization } = authClient.useActiveOrganization()
-
     const handleChangeOrganization = async (organizationId: string) => {
         try {
             const { error } = await authClient.organization.setActive({
@@ -56,7 +56,7 @@ export function WorkspaceSwitcher({
                             <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-5 items-center justify-center rounded-md">
                                 {/* <activeTeam.logo className="size-3" /> */}
                             </div>
-                            <span className="truncate font-medium">{activeOrganization?.name}</span>
+                            <span className="truncate font-medium">{activeOrganization?.name || <div className='flex items-center space-x-4'><Skeleton className="h-3.5 w-[10ch] rounded-md" /></div>}</span>
                             <ChevronDown className="opacity-50" />
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
@@ -84,18 +84,16 @@ export function WorkspaceSwitcher({
                                 </DropdownMenuItem>
                             </Link>
                         ))}
-                        {/* <DropdownMenuSeparator />
-                        <DropdownMenuItem className="gap-2">
-                            <div className="bg-background flex size-6 items-center justify-center rounded-md border">
-                                <Plus className="size-4" />
-                            </div>
-                            <Link
-                                className="text-muted-foreground font-medium"
-                                href={'/team/new'}
-                            >
-                                Add team
-                            </Link>
-                        </DropdownMenuItem> */}
+                        <DropdownMenuSeparator />
+                        <Link className="text-muted-foreground font-medium"
+                            href={'/team/new'}>
+                            <DropdownMenuItem className="gap-2">
+                                <div className="bg-background flex size-6 items-center justify-center rounded-md border">
+                                    <Plus className="size-3" />
+                                </div>
+                                New team
+                            </DropdownMenuItem>
+                        </Link>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </SidebarMenuItem>

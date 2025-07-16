@@ -49,6 +49,7 @@ export default async function RootLayout({
     }
     return (
         <SidebarProvider>
+            <AppSidebar data={data} />
             <SidebarInset className="h-svh p-0 lg:p-1.5">
                 <div className="h-full flex flex-col  lg:rounded-sm lg:ring lg:ring-accent">
                     {children}

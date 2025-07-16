@@ -1,7 +1,4 @@
-// "use client"
-
 import { Search } from 'lucide-react'
-import type * as React from 'react'
 
 import { NavMain } from './nav-main'
 import {
@@ -13,6 +10,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { WorkspaceSwitcher } from './workspace-switcher'
 import { Organization } from '@prisma/client/edge'
+import { Skeleton } from '../ui/skeleton'
 
 export type AppSidebarData = {
     user: {

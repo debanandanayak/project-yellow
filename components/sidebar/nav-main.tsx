@@ -43,7 +43,7 @@ export function NavMain({
                     <Collapsible key={item.title} asChild >
                         <SidebarMenuItem>
                             <SidebarMenuButton asChild tooltip={item.title}>
-                                <Link href={`/${slug}/${item.url}`}>
+                                <Link href={`/d/${slug}/${item.url}`}>
                                     {/* <item.icon /> */}
                                     <span>{item.title}</span>
                                 </Link>
