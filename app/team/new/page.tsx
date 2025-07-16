@@ -12,7 +12,7 @@ export default async function NewTeam() {
                             <div className="grid w-full items-center gap-1.5">
                                 <Form action={'/plan'}>
                                     <div className="flex flex-col items-center mb-5">
-                                        <h1 className="text-3xl font-bold text-center">
+                                        <h1 className="text-3xl font-semibold text-gray-300 text-center">
                                             Create new team
                                         </h1>
                                         <p className="w-[30ch] mt-1.5 text-center">
@@ -42,7 +42,7 @@ export default async function NewTeam() {
                                         required
                                     />
                                     <p className="text-white/40 text-sm mt-1">
-                                        Your can acces your team /team-slug
+                                        Your can access your team /team-slug
                                     </p>
                                     <div className="grid grid-cols-2 gap-3 w-full mt-3">
                                         <Button variant="outline" type="button">

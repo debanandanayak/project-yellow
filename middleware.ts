@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
                     headers: nextHeaders,
                 })
                 return NextResponse.redirect(
-                    new URL(`/d/${organizations?.slug}`, request.url),
+                    new URL(`/d/${organizations?.slug}/emails`, request.url),
                 )
             }
             const organizations = await auth.api.listOrganizations({
@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
                 )
             } else {
                 return NextResponse.redirect(
-                    new URL(`/d/${organizations[0]?.slug}`, request.url),
+                    new URL(`/d/${organizations[0]?.slug}/emails`, request.url),
                 )
             }
         }
