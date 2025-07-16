@@ -20,36 +20,10 @@ export default async function RootLayout({
             avatar: '/avatars/shadcn.jpg',
         },
         teams,
-        navMain: [
-            {
-                title: 'Playground',
-                url: 'play',
-                icon: '',
-                items: [],
-            },
-            {
-                title: 'Models',
-                url: '#',
-                icon: '',
-                items: [],
-            },
-            {
-                title: 'Documentation',
-                url: '#',
-                icon: '',
-                items: [],
-            },
-            {
-                title: 'Settings',
-                url: '#',
-                icon: '',
-                items: [],
-            },
-        ],
     }
     return (
         <SidebarProvider>
-            <AppSidebar data={data} />
+            <AppSidebar data={data} variant="sidebar" className="group-data-[side=left]:border-r-0" />
             <SidebarInset className="h-svh p-0 lg:p-1.5">
                 <div className="h-full flex flex-col  lg:rounded-sm lg:ring lg:ring-accent">
                     {children}
