@@ -1,3 +1,5 @@
+import DotGrid from '@/components/landing-page/dot-grid'
+import Silk from '@/components/landing-page/silk'
 import { Button } from '@/components/ui/button'
 import { GotoApp } from '@/components/users/goto-app'
 import { SignoutButton } from '@/components/users/logout'
@@ -6,28 +8,26 @@ import { Suspense } from 'react'
 
 export default function Home() {
 	return (
-		<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-				<Image
-					className="dark:invert"
-					src="/next.svg"
-					alt="Next.js logo"
-					width={180}
-					height={38}
-					priority
-				/>
-				<ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-					<li className="mb-2 tracking-[-.01em]">
-						Get started by editing{' '}
-						<code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-							app/page.tsx
-						</code>
-						.
-					</li>
-					<li className="tracking-[-.01em]">
-						Save and see your changes instantly.
-					</li>
-				</ol>
+		<div className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+			<header className='h-15 flex flex-row border-b justify-between items-center px-40 p-2 m-auto'>
+				<div>Some</div>
+				<div className='flex flex-row space-x-0.5'>
+					<SignoutButton />
+					<GotoApp />
+				</div>
+			</header>
+			{/* <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+				<div className="text-sm/6 text-center sm:text-left font-[family-name:var(--font-work-sans)]">
+					<h1 className="mb-2 tracking-[-.01em] text-4xl w-lg">
+						Email Api that just work - no headaches,
+						<div className="rounded font-[family-name:var(--font-work-sans)] font-semibold">
+							No limits.
+						</div>
+					</h1>
+					<p className="tracking-[-.01em]">
+						The best way to reach humans instead of spam folders. Deliver transactional and marketing emails at scale.
+					</p>
+				</div>
 
 				<div className="flex gap-4 items-center flex-col sm:flex-row">
 					<a
@@ -52,25 +52,11 @@ export default function Home() {
 						Sign up
 					</a>
 				</div>
-			</main>
+			</main> */}
 			<footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/file.svg"
-						alt="File icon"
-						width={16}
-						height={16}
-					/>
-					Learn
-				</a>
-				<SignoutButton />
-				<GotoApp />
+
+
+				@project-yellow
 			</footer>
 		</div>
 	)
